@@ -1,0 +1,11 @@
+import pandas as pd
+data = {
+    'OrderDate': ['1-6-18', '1-23-18', '2-9-18', '2-26-18', '3-15-18'],
+    'Region': ['East', 'Central', 'Central', 'Central', 'West'],
+    'Item': ['Television', 'Home Theater', 'Television', 'Cell Phone', 'Television'],
+    'Units': [95, 50, 36, 27, 56]
+}
+df = pd.DataFrame(data)
+pivot_table = df.pivot_table(values='Units', index='Item', aggfunc='sum')
+pivot_table.columns = ['Total Units Sold']
+print(pivot_table)
