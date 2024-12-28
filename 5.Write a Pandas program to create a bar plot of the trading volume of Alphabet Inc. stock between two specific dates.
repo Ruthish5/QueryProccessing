@@ -2,17 +2,19 @@ import pandas as pd
 import matplotlib.pyplot as plt
 data = {
     'Date': pd.date_range(start='2023-01-01', periods=10, freq='D'),
-    'Stock Price': [1500, 1520, 1530, 1490, 1480, 1505, 1510, 1525, 1535, 1540]
+    'Trading Volume': [2000000, 2200000, 1800000, 2500000, 2300000, 2400000, 2600000, 2100000, 2200000, 2250000]
 }
 df = pd.DataFrame(data)
 start_date = '2023-01-03'
 end_date = '2023-01-08'
 filtered_data = df[(df['Date'] >= start_date) & (df['Date'] <= end_date)]
 plt.figure(figsize=(8, 5))
-plt.plot(filtered_data['Date'], filtered_data['Stock Price'], marker='o', label='Alphabet Inc.')
-plt.title('Alphabet Inc. Stock Prices')
+plt.bar(filtered_data['Date'], filtered_data['Trading Volume'], color='skyblue', label='Trading Volume')
+plt.title('Alphabet Inc. Trading Volume')
 plt.xlabel('Date')
-plt.ylabel('Stock Price')
-plt.grid()
+plt.ylabel('Trading Volume')
+plt.xticks(rotation=45)
+plt.grid(axis='y')
 plt.legend()
+plt.tight_layout()
 plt.show()
