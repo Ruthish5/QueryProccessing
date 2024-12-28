@@ -1,9 +1,20 @@
 import pandas as pd
-import numpy as np
-df = pd.DataFrame(np.random.randn(10, 4), columns=['A', 'B', 'C', 'D'])
-def mark_negatives(df):
-    df = df.copy()
-    for col in df.columns:
-        df[col] = df[col].apply(lambda x: f"\033[91m{x}\033[0m" if x < 0 else f"\033[30m{x}\033[0m")
-    return df
-print(mark_negatives(df))
+import matplotlib.pyplot as plt
+data = {
+    'Date': pd.date_range(start='2023-01-01', periods=10, freq='D'),
+    'Stock Price': [1500, 1520, 1530, 1490, 1480, 1505, 1510, 1525, 1535, 1540]
+}
+df = pd.DataFrame(data)
+start_date = '2023-01-03'
+end_date = '2023-01-08'
+filtered_data = df[(df['Date'] >= start_date) & (df['Date'] <= end_date)]
+plt.figure(figsize=(8, 5))
+plt.plot(filtered_data['Date'], filtered_data['Stock Price'], marker='o', label='Alphabet Inc.')
+plt.title('Alphabet Inc. Historical Stock Prices')
+plt.xlabel('Date')
+plt.ylabel('Stock Price')
+plt.grid()
+plt.legend()
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.show()
