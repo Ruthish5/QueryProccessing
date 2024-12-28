@@ -1,18 +1,17 @@
 import pandas as pd
-import matplotlib.pyplot as plt
 data = {
-    'Date': pd.date_range(start='2023-01-01', periods=10, freq='D'),
-    'Stock Price': [1500, 1520, 1530, 1490, 1480, 1505, 1510, 1525, 1535, 1540]
+    'Item': ['Item_A', 'Item_B', 'Item_C', 'Item_D', 'Item_E'],
+    'Category': ['Category_1', 'Category_2', 'Category_1', 'Category_3', 'Category_2'],
+    'Price': [100, 200, 150, 250, 300],
+    'Sales': [500, 400, 300, 700, 800]
 }
-df = pd.DataFrame(data)
-start_date = '2023-01-03'
-end_date = '2023-01-08'
-filtered_data = df[(df['Date'] >= start_date) & (df['Date'] <= end_date)]
-plt.figure(figsize=(8, 5))
-plt.plot(filtered_data['Date'], filtered_data['Stock Price'], marker='o', label='Alphabet Inc.')
-plt.title('Alphabet Inc. Stock Prices')
-plt.xlabel('Date')
-plt.ylabel('Stock Price')
-plt.grid()
-plt.legend()
-plt.show()
+sales_data = pd.DataFrame(data)
+pivot_table = pd.pivot_table(
+    sales_data,
+    values='Sales',
+    index='Category',
+    aggfunc=['max', 'min']
+)
+pivot_table.columns = ['Max Sales', 'Min Sales']
+print("Pivot Table:")
+print(pivot_table)
