@@ -1,0 +1,18 @@
+import pandas as pd
+import numpy as np
+np.random.seed(42)
+data = np.random.rand(10, 4)
+columns = ['A', 'B', 'C', 'D']
+df = pd.DataFrame(data, columns=columns)
+def set_styles(dataframe):
+    styled = dataframe.style.set_properties(**{
+        'background-color': 'black',
+        'color': 'yellow'
+    })
+    return styled
+styled_df = set_styles(df)
+html_file = "C:/Users/pedda/Downloads/QPDS/DAY2/Programs/styled_black_yellow_dataframe.html"
+styled_df.to_html(html_file)
+print(f"The styled DataFrame has been saved to {html_file}. Open it in a browser to view.")
+import webbrowser
+webbrowser.open(html_file)
