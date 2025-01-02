@@ -1,0 +1,10 @@
+import matplotlib.pyplot as plt
+import numpy as np
+x = np.random.randn(100)
+y = np.random.randn(100)
+plt.figure(figsize=(8, 6))
+plt.scatter(x, y, edgecolor='green', facecolor='none', marker='o')
+plt.xlabel("X", fontsize=12)
+plt.ylabel("Y", fontsize=12)
+plt.title("Scatter Plot with Empty Circles", fontsize=14)
+plt.show()
