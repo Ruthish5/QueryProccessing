@@ -1,0 +1,33 @@
+import re
+from collections import Counter
+WORDS = Counter(["example", "word", "autocorrect", "system", "corrections", "enhance", "valid", "mistyped", "suggestions"])
+def words(text):
+    """Extract words from a text corpus."""
+    return re.findall(r'\w+', text.lower())
+def edits1(word):
+    """Generate possible edits for a word (including transpositions)."""
+    letters = 'abcdefghijklmnopqrstuvwxyz'
+    splits = [(word[:i], word[i:]) for i in range(len(word) + 1)]
+    deletes = [L + R[1:] for L, R in splits if R]
+    transposes = [L + R[1] + R[0] + R[2:] for L, R in splits if len(R) > 1]
+    replaces = [L + c + R[1:] for L, R in splits if R for c in letters]
+    inserts = [L + c + R for L, R in splits for c in letters]
+    return set(deletes + transposes + replaces + inserts)
+def known(words):
+    """Filter the words that are known in the dictionary."""
+    return set(w for w in words if w in WORDS)
+def candidates(word):
+    """Generate possible spelling corrections for a word."""
+    return (known([word]) or
+            known(edits1(word)) or
+            known(edits2(word)) or
+            [word])
+def edits2(word):
+    """Generate edits that are two steps away."""
+    return (e2 for e1 in edits1(word) for e2 in edits1(e1))
+def correct(word):
+    """Find the best correction for the given word."""
+    return max(candidates(word), key=WORDS.get)
+test_word = "sysetm"
+correction = correct(test_word)
+print(f"Correction for '{test_word}': {correction}")
