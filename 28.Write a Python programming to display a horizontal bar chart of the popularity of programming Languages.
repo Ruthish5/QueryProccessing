@@ -1,0 +1,10 @@
+import matplotlib.pyplot as plt
+languages = ['Java', 'Python', 'PHP', 'JavaScript', 'C#', 'C++']
+popularity = [22.2, 17.6, 8.8, 8, 7.7, 6.7]
+plt.figure(figsize=(10, 6))
+plt.barh(languages, popularity, color='green')
+plt.title("Popularity of Programming Languages", fontsize=14)
+plt.xlabel("Popularity", fontsize=12)
+plt.ylabel("Languages", fontsize=12)
+plt.grid(axis='x', linestyle='--', linewidth=0.5)
+plt.show()
