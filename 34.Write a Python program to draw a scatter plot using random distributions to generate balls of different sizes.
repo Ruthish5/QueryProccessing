@@ -1,0 +1,11 @@
+import matplotlib.pyplot as plt
+import numpy as np
+x = np.random.rand(25)
+y = np.random.rand(25)
+sizes = np.random.rand(25) * 1000
+plt.figure(figsize=(8, 6))
+plt.scatter(x, y, s=sizes, c=np.random.rand(25), alpha=0.6, cmap='viridis')
+plt.xlabel("X", fontsize=12)
+plt.ylabel("Y", fontsize=12)
+plt.title("Scatter Plot with Different Ball Sizes", fontsize=14)
+plt.show()
