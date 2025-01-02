@@ -1,0 +1,11 @@
+import matplotlib.pyplot as plt
+x = [10, 20, 30]
+y1 = [10, 20, 30]
+y2 = [30, 20, 10]
+plt.plot(x, y1, color='red', linewidth=3, label='Line 1 - width 3')
+plt.plot(x, y2, color='blue', linewidth=5, label='Line 2 - width 5')
+plt.xlabel('x - axis')
+plt.ylabel('y - axis')
+plt.title('Two or more lines with legends, different widths, and colors')
+plt.legend()
+plt.show()
