@@ -1,0 +1,14 @@
+import matplotlib.pyplot as plt
+with open('C:/Users/pedda/Downloads/QPDS/DAY3/Programs/test.txt', 'r') as file:
+    data = file.readlines()
+x = []
+y = []
+for line in data:
+    values = line.split()
+    x.append(int(values[0]))
+    y.append(int(values[1]))
+plt.plot(x, y, color='blue', linewidth=2)
+plt.xlabel('x - axis')
+plt.ylabel('y - axis')
+plt.title('Draw a line from text file data')
+plt.show()
