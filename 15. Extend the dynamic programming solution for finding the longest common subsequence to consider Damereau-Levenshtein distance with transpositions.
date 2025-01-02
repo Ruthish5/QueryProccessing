@@ -1,0 +1,22 @@
+def damerau_levenshtein_lcs(s1, s2):
+    len1, len2 = len(s1), len(s2)
+    dp = [[0] * (len2 + 1) for _ in range(len1 + 1)]
+    for i in range(1, len1 + 1):
+        for j in range(1, len2 + 1):
+            if s1[i - 1] == s2[j - 1]:
+                dp[i][j] = dp[i - 1][j - 1] + 1
+            else:
+                dp[i][j] = max(dp[i - 1][j], dp[i][j - 1])
+            if i > 1 and j > 1 and s1[i - 1] == s2[j - 2] and s1[i - 2] == s2[j - 1]:
+                dp[i][j] = max(dp[i][j], dp[i - 2][j - 2] + 1)
+    lcs_length = dp[len1][len2]
+    damerau_levenshtein_distance = (len1 + len2) - 2 * lcs_length
+    return lcs_length, damerau_levenshtein_distance, dp
+s1 = "kitten"
+s2 = "sitting"
+lcs_length, damerau_distance, dp_table = damerau_levenshtein_lcs(s1, s2)
+print(f"Longest Common Subsequence Length: {lcs_length}")
+print(f"Damerau-Levenshtein Distance: {damerau_distance}")
+print("DP Table:")
+for row in dp_table:
+    print(row)
