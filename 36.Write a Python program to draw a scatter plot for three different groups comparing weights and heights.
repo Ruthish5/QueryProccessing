@@ -1,0 +1,10 @@
+import matplotlib.pyplot as plt
+weights = [50, 55, 60, 65, 70, 75, 80]
+heights = [150, 160, 170, 180, 190, 200, 210]
+plt.figure(figsize=(10, 6))
+plt.scatter(weights, heights, color='blue', label='Group 1')
+plt.xlabel("Weight", fontsize=12)
+plt.ylabel("Height", fontsize=12)
+plt.title("Group-wise Weight vs Height Scatter Plot", fontsize=14)
+plt.legend()
+plt.show()
