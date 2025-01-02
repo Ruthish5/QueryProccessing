@@ -1,0 +1,5 @@
+mean = 60
+std_dev = 8
+data_point = 72
+z_score = (data_point - mean) / std_dev
+print("Z-score:", z_score)
